@@ -35,8 +35,9 @@ def get_template():
 
 def model_setup():
     format = format_list()
-    field_list = format[:-1].append("Song Audio")
-    fields = [{'name': field for field in field_list}]
+    field_list = format[:-1]
+    field_list.append("Song Audio")
+    fields = [{'name': field} for field in field_list]
     templates = [get_template()]
     return fields, templates
 
@@ -59,11 +60,10 @@ def gen_model(title):
     return model
 
 
-def gen_deck(model_title, deck_title):
+def gen_deck(deck_title):
     deck_id = rand_id()
-    model = gen_model(model_title)
     deck = genanki.Deck(deck_id, deck_title)
-    return deck, model
+    return deck
 
 
 def gen_note(model, fields):
@@ -72,3 +72,9 @@ def gen_note(model, fields):
         fields=fields
     )
     return note
+
+
+def gen_package(deck, mp3_files, filename):
+    package = genanki.Package(deck)
+    package.media_files = mp3_files
+    package.write_to_file(filename)
