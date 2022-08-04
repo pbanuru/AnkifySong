@@ -7,11 +7,16 @@ def rand_id():
 
 
 def model_setup():
-    fields = [{'name': 'Question'}, {'name': 'Answer'}]
+    fields = [
+        {'name': 'Question'},
+        {'name': 'Answer'},
+        {'name': 'MyMedia'}
+
+    ]
     templates = [
         {
             'name': 'Card 1',
-            'qfmt': '{{Question}}',
+            'qfmt': '{{Question}}<br>{{MyMedia}}',
             'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
         },
     ]
