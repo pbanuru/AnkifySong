@@ -2,7 +2,21 @@ import genanki
 import random
 
 
+
 def rand_id():
+    '''
+    Note from https://github.com/kerrickstaley/genanki:
+
+    Model:
+    You need to pass a model_id so that Anki can keep track of your model. 
+    It's important that you use a unique model_id for each Model you define. 
+    Use import random; random.randrange(1 << 30, 1 << 31) 
+    to generate a suitable model_id, and hardcode it into your Model definition.
+
+    Deck:
+    Once again, you need a unique deck_id that you should generate once 
+    and then hardcode into your .py file.
+    '''
     return random.randrange(1 << 30, 1 << 31)
 
 
@@ -15,9 +29,9 @@ def model_setup():
     ]
     templates = [
         {
-            'name': 'Card 1',
-            'qfmt': '{{Question}}<br>{{MyMedia}}',
-            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',
+            'name': 'Song Template', 
+            'qfmt': '{{Question}}<br>{{MyMedia}}', # qfmt is the question format
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}', # afmt is the answer format
         },
     ]
     return fields, templates
@@ -31,5 +45,5 @@ def gen_model(title):
 
 
 def gen_deck(title):
-    deck_id = rand_id()
+    deck_id = rand_id() 
     return genanki.Deck(deck_id, title)
