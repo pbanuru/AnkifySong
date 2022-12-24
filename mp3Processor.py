@@ -49,12 +49,20 @@ def clip_timestamp(start, end, filename):
     # Use main audio file
     clip_src = mp.AudioFileClip("data/core/audio.aac")
     clip_src = clip_src.subclip(start, end)
-    clip_src.write_audiofile(f"data/clips/{filename}_src.mp3")
+
+    clip_src_name = f"{filename}_src.mp3"
+    clip_src_path = f"data/clips/{clip_src_name}"
+    clip_src.write_audiofile(clip_src_path)
 
     # Use vocals only
     clip_vocals = mp.AudioFileClip("data/core/audio_Vocals.wav")
     clip_vocals = clip_vocals.subclip(start, end)
-    clip_vocals.write_audiofile(f"data/clips/{filename}_vocals.mp3")
+
+    clip_vocals_name = f"{filename}_vocals.mp3"
+    clip_vocals_path = f"data/clips/{clip_vocals_name}"
+    clip_vocals.write_audiofile(clip_vocals_path)
+
+    return clip_src_name, clip_src_path, clip_vocals_name, clip_vocals_path
 
 
 

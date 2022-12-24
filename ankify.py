@@ -22,8 +22,9 @@ def rand_id():
 
 def model_setup():
     fields = [
-        {'name': 'Question'},
-        {'name': 'Answer'},
+        {'name': 'Foreign Lyrics'},
+        {'name': 'Transliterated Lyrics'},
+        {'name': 'English Lyrics'},
         {'name': 'Source_Clip'},
         {'name': 'Vocals_Clip'},
 
@@ -31,8 +32,12 @@ def model_setup():
     templates = [
         {
             'name': 'Song Template', 
-            'qfmt': '{{Question}}<br>Listen:{{Source_Clip}}', # qfmt is the question format (front side)
-            'afmt': '{{FrontSide}}<br>Isolated Vocals:{{Vocals_Clip}}<br><hr id="answer">{{Answer}}', # afmt is the answer format
+            'qfmt': '{{Foreign Lyrics}}<br>Listen:{{Source_Clip}}', # qfmt is the question format (front side)
+            'afmt': # afmt is the answer format (back side)
+                '{{FrontSide}}<br>\
+                Isolated Vocals:{{Vocals_Clip}}<br>\
+                {{Transliterated Lyrics}}<br>\
+                <hr id="answer">{{English Lyrics}}', 
         },
     ]
     return fields, templates
@@ -48,3 +53,19 @@ def gen_model(title):
 def gen_deck(title):
     deck_id = rand_id() 
     return genanki.Deck(deck_id, title)
+
+def gen_package(deck, audio_paths):
+    package = genanki.Package(deck, audio_paths)
+    package.write_to_file("data/anki_deck.apkg")
+
+def add_notes(deck, model, fields_list):
+    '''
+    Add all notes to the deck, given a list of field lists.
+
+    The fields of the model specified in model_setup() detail how the note (flashcard) will be formatted
+    '''
+    for fields in fields_list:
+        note = genanki.Note(model, fields)
+        deck.add_note(note)
+    return deck
+

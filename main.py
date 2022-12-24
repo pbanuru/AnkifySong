@@ -1,9 +1,11 @@
-from ankify import *
+import ankify
+import genanki
 import os
 import subprocess
 import shutil
 from time import sleep
 import mp3Processor
+import srtProcessor
 
 REDOWNLOAD_CORE = False
 
@@ -24,29 +26,27 @@ def clear_data():
         if file != "core" and file != "clips":
             os.remove(f"data/{file}")
 
-def run():
+def run(link):
 
     clear_data() # Empty data folder of all files besides placeholder
     
-    mp3Processor.download("https://www.youtube.com/watch?v=r6cIKA1SWI8")
+    mp3Processor.download(link)
 
-    # Remove vocals from audio and generate audio_Vocals.wav and audio_Instruments.wav
+    # Remove vocals from source audio and generate audio_Vocals.wav and audio_Instruments.wav
     mp3Processor.isolate_vocals()
 
-    mp3Processor.clip_timestamp(0, 5, "mata0")
+    deck = ankify.gen_deck("Anki Deck")
+    model = ankify.gen_model("Anki Model")
 
-    deck = gen_deck("Anki Deck")
-    model = gen_model("Anki Model")
-
-    # The fields of the model specified in model_setup() detail how the note (flashcard) will be formatted
-    note = genanki.Note(
-        model, ["また月が昇る", "The moon is rising again", "[sound:mata0_src.mp3]", "[sound:mata0_vocals.mp3]"])
-    deck.add_note(note)
+    # Parse SRT file
+    note_field_lists, audio_paths = srtProcessor.processSrtFile("./lyrics.srt")
+    
+    # Add notes to deck
+    ankify.add_notes(deck, model, note_field_lists)
 
     # Generate package
-    pkg = genanki.Package(deck, ["data/clips/mata0_src.mp3", "data/clips/mata0_vocals.mp3"])
-    pkg.write_to_file("data/anki_deck.apkg")
+    ankify.gen_package(deck, audio_paths)
 
 
 if __name__ == '__main__':
-    run()
+    run("https://www.youtube.com/watch?v=r6cIKA1SWI8")
