@@ -26,12 +26,12 @@ def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder
     if REDOWNLOAD_CORE:
         for file in os.listdir("data/core"):
-            if file != "placeholder":
+            if file != ".placeholder":
                 os.remove(f"data/core/{file}")
         
     # Delete all files in clips folder except for placeholder
     for file in os.listdir("data/clips"):
-        if file != "placeholder":
+        if file != ".placeholder":
             os.remove(f"data/clips/{file}")
     
     # Delete all other files in data folder.
