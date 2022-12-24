@@ -5,6 +5,7 @@ import mp3Processor
 import srtProcessor
 
 REDOWNLOAD_CORE = False
+DEBUG = True
 
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder
@@ -27,17 +28,15 @@ def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
 
     clear_data() # Empty data folder of all files besides placeholder
     
-    mp3Processor.download(link)
+    song = mp3Processor.Song(link)
 
-    # Remove vocals from source audio and generate audio_Vocals.wav and audio_Instruments.wav
-    mp3Processor.isolate_vocals()
+    # Parse SRT file
+    srt_processor = srtProcessor.SrtProcessor(song, srt_path, 0.5)
+    note_field_lists, audio_paths = srt_processor.processSrtFile()
 
     deck = ankify.gen_deck(name)
     model = ankify.gen_model("My Model")
 
-    # Parse SRT file
-    note_field_lists, audio_paths = srtProcessor.processSrtFile(srt_path)
-    
     # Add notes to deck
     ankify.add_notes(deck, model, note_field_lists)
 
@@ -46,7 +45,12 @@ def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
 
 
 if __name__ == '__main__':
+    if DEBUG:
+        run("https://www.youtube.com/watch?v=r6cIKA1SWI8", "Spinning Sky Rabbit")
+        exit(0)
+
     argc = len(sys.argv)
+
     if argc not in [3, 4]:
         print("Usage: python3 main.py \"<youtube-link>\" \"<deck-name>\" [<srt-path>]")
         print("Using Default lyrics.srt file:\npython3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
