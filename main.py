@@ -22,7 +22,7 @@ def clear_data():
         if file != "core" and file != "clips":
             os.remove(f"data/{file}")
 
-def run(link):
+def run(link, name="Anki Deck"):
 
     clear_data() # Empty data folder of all files besides placeholder
     
@@ -31,8 +31,8 @@ def run(link):
     # Remove vocals from source audio and generate audio_Vocals.wav and audio_Instruments.wav
     mp3Processor.isolate_vocals()
 
-    deck = ankify.gen_deck("Anki Deck")
-    model = ankify.gen_model("Anki Model")
+    deck = ankify.gen_deck(name)
+    model = ankify.gen_model("My Model")
 
     # Parse SRT file
     note_field_lists, audio_paths = srtProcessor.processSrtFile("./lyrics.srt")
@@ -45,4 +45,4 @@ def run(link):
 
 
 if __name__ == '__main__':
-    run("https://www.youtube.com/watch?v=r6cIKA1SWI8")
+    run("https://www.youtube.com/watch?v=r6cIKA1SWI8", "Spinning Sky Rabbit")
