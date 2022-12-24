@@ -7,21 +7,6 @@ import mp3Processor
 
 REDOWNLOAD_CORE = False
 
-def isolate_vocals():
-
-    # Check if vocal data/audio_Vocals.wav or data/audio_Instruments.wav exists
-    if os.path.exists("data/core/audio_Vocals.wav") and os.path.exists("data/core/audio_Instruments.wav"):
-        print("Vocals already extracted")
-        return
-        
-    # Call vocal remover 
-    print("Extracting Pure Vocals...")
-    os.system("cd vocal-remover && python3 inference.py --input ../data/core/audio.aac --gpu 0")
-    
-    # Move vocal-remover/audio_Vocals.wav to data/audio_Vocals.wav
-    shutil.move("vocal-remover/audio_Vocals.wav", "data/core/audio_Vocals.wav")
-    shutil.move("vocal-remover/audio_Instruments.wav", "data/core/audio_Instruments.wav")
-
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder
     if REDOWNLOAD_CORE:
@@ -45,8 +30,8 @@ def run():
     
     mp3Processor.download("https://www.youtube.com/watch?v=r6cIKA1SWI8")
 
-    # Remove vocals from audio
-    isolate_vocals()
+    # Remove vocals from audio and generate audio_Vocals.wav and audio_Instruments.wav
+    mp3Processor.isolate_vocals()
 
     mp3Processor.clip_timestamp(0, 5, "mata0")
 

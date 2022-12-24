@@ -3,6 +3,7 @@
 import pytube
 import moviepy.editor as mp
 import os
+import shutil
 
 
 def download(url):
@@ -25,6 +26,21 @@ def download(url):
         filename='data/core/audio.aac')
 
     print(f'Download Complete: {title} ✨')
+
+def isolate_vocals():
+
+    # Check if vocal data/audio_Vocals.wav or data/audio_Instruments.wav exists
+    if os.path.exists("data/core/audio_Vocals.wav") and os.path.exists("data/core/audio_Instruments.wav"):
+        print("Vocals already extracted")
+        return
+        
+    # Call vocal remover 
+    print("Extracting Pure Vocals...")
+    os.system("cd vocal-remover && python3 inference.py --input ../data/core/audio.aac --gpu 0")
+    
+    # Move vocal-remover/audio_Vocals.wav to data/audio_Vocals.wav
+    shutil.move("vocal-remover/audio_Vocals.wav", "data/core/audio_Vocals.wav")
+    shutil.move("vocal-remover/audio_Instruments.wav", "data/core/audio_Instruments.wav")
 
 def clip_timestamp(start, end, filename):
     """
