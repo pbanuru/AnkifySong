@@ -1,10 +1,28 @@
 import srt
 import mp3Processor
+from datetime import timedelta
+# Seconds before to subtract from start time and seconds after to add to end time of subtitle
+BUFFER = 0.5
+
+def add_remove_buffer(subtitle):
+    '''
+    Takes in a subtitle and adds a buffer to the start and end times.
+    '''
+
+    delta = timedelta(seconds=BUFFER)
+    suggested_start = subtitle.start - delta
+    suggested_end = subtitle.end + delta
+    zero = timedelta(seconds=0)
+    song_len = timedelta(seconds=mp3Processor.song_length())
+
+    subtitle.start = suggested_start if suggested_start > zero else zero
+    subtitle.end = suggested_end if suggested_end < song_len else song_len
+
+    return subtitle
 
 def processSrtFile(srt_file_path):
     '''
     Takes in a .srt file and generates two list data structures.
-
 
     # Note how for each note generation, we need to specify the fields of the model
     # As such, we need to generate a list of field lists, where each field list is a list of the fields for a single note
@@ -36,6 +54,9 @@ def processSrtFile(srt_file_path):
             transliteration = content[1]
             english = content[2]
             filename = f"{transliteration.split()[0]}{i}"
+
+            # Add buffer to start and end times
+            subtitle = add_remove_buffer(subtitle)
 
             # Generate the subclips for source audio and isolated vocals for each subtitle
             clip_src_name, clip_src_path, clip_vocals_name, clip_vocals_path = mp3Processor.clip_timestamp(subtitle.start.seconds, subtitle.end.seconds, filename)
