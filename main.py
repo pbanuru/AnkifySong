@@ -3,7 +3,7 @@ import os
 import mp3Processor
 import srtProcessor
 
-REDOWNLOAD_CORE = True
+REDOWNLOAD_CORE = False
 
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder

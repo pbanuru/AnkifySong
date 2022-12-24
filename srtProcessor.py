@@ -47,7 +47,7 @@ def processSrtFile(srt_file_path):
     audio_paths = []
 
     with open(srt_file_path, "r", encoding="utf-8") as f:
-        for i, subtitle in enumerate(srt.parse(f.read())):
+        for i, subtitle in enumerate(srt.parse(f.read()), start=1):
 
             # Gather the fields of the current note
             content = subtitle.content.splitlines()
