@@ -100,3 +100,16 @@ On the other hand, if you are using many different songs/srt-files, keep this at
 Head to `srtProcessor.py` and modify the `BUFFER` global variable, indicating the seconds (a float) to subtract from the start of each "subtitle phrase" and to add to the end of each.
 I have set it to 0.5 seconds since that's what works for me.
 
+## Suggestions on getting SRT file
+
+The format of an SRT file is quite simple, as you can see above. However, putting that together manually can be incredibly time intensive.
+
+This is not necessarily a bad thing. We are trying to learn this song, so by manually going through the song, and typing the lyrics/translations, we can make strides towards learning the meanings of the words and phrases.
+
+Alternatively, if your video is on YouTube, and already contains custom subtitles (You can **probably** trust the quality if they are custom),
+You can use tools such as https://downsub.com/, to get an SRT. DownSub allows to create bilingual SRTs, so in the case someone has already created say, English, and Japanese subtitles for your song, all you need to do now is manually gather and add the English Transliteration. 
+
+For Japanese, there are tools like http://www.romajidesu.com/translator/, or you can find transliterations on lyric sites, like [https://vocaloidlyrics.fandom.com/wiki/回る空うさぎ_(Mawaru_Sora_Usagi)](https://vocaloidlyrics.fandom.com/wiki/%E5%9B%9E%E3%82%8B%E7%A9%BA%E3%81%86%E3%81%95%E3%81%8E_(Mawaru_Sora_Usagi))
+
+[Kapwing Online Tool](https://www.kapwing.com/studio/editor) seems like a good tool for creating SRTs from scratch.
+
