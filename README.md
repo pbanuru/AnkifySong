@@ -5,6 +5,7 @@ It's the way they sound, the words are accomplices.
 
 (This might explain why I like listening to BTS's songs, despite not knowing the meanings/messages of 70% of them.)
 
+![image](https://user-images.githubusercontent.com/55062649/209430434-c07adade-b99c-4abf-ba7c-2859b5334107.png)
 Anki flashcards can contain anything a website can; that includes audio.
 We can use these to contain our sound, but the process of manually creating specialized Anki Decks is quite lengthy.
 
