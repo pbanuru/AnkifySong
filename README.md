@@ -18,6 +18,25 @@ foreign language lyrics,
 english transliteration lyrics,
 english translation lyrics
 
+Ex:
+```
+1
+00:00:00,618 --> 00:00:04,620
+また月が昇る
+mata tsuki ga noboru
+The moon is rising again,
+
+2
+00:00:04,621 --> 00:00:08,825
+今日が終わりだす
+kyou ga owaridasu
+and today is beginning to end
+
+.
+.
+.
+```
+
 ## INSTALLATION
 Download the repository.
 
@@ -30,11 +49,42 @@ $ pip install -r requirements.txt
 We also need to install PyTorch (used for vocal isolation)
 **See**: [GET STARTED](https://pytorch.org/get-started/locally/)
 
-Additionally, install the requirements from vocal-remover [vocal-remover](https://github.com/tsurumeso/vocal-remover/blob/develop/README.md)
+Additionally, install the requirements from [vocal-remover](https://github.com/tsurumeso/vocal-remover/blob/develop/README.md)
+Please take a look at this repo if you need to understand how to modify the vocal isolation. Ex. change from gpu to cpu ML, etc.
 ```
 $ cd vocal-remover/
 $ pip install -r requirements.txt
 ```
 
 ## Run it!
+Usage: `python3 main.py "<youtube-link>" "<deck-name>" [<srt-path>]`
+
+Using Default lyrics.srt file:
+`$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
+To specify srt path:
+`$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
+
+If you dont specify the srt path, AnkifySong will use the lyrics.srt file in the source directory. By default, it contains the srt file to the song "回る空うさぎ" (Spinning Sky Rabbit).
+
+When all is finished, load `data/anki_deck.apkg` into Anki, and you have your deck!
+
+Card Front:
+<img width="359" alt="image" src="https://user-images.githubusercontent.com/55062649/209429700-a85522e6-cfc4-4a08-804d-3739071e1cd9.png">
+Card Back:
+<img width="411" alt="image" src="https://user-images.githubusercontent.com/55062649/209429767-b68639e6-3897-407e-bcce-9ea6830566c6.png">
+
+The design isn't the prettiest right now,
+
+## Modifications
+If you want to modify your card design, you can do that in `ankify.py:model_setup()`
+
+
+
+
+
+
+
+
+
+
 
