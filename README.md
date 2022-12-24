@@ -50,6 +50,7 @@ We also need to install PyTorch (used for vocal isolation)
 **See**: [GET STARTED](https://pytorch.org/get-started/locally/)
 
 Additionally, install the requirements from [vocal-remover](https://github.com/tsurumeso/vocal-remover/blob/develop/README.md)
+
 Please take a look at this repo if you need to understand how to modify the vocal isolation. Ex. change from gpu to cpu ML, etc.
 ```
 $ cd vocal-remover/
@@ -75,8 +76,22 @@ Card Back:
 
 The design isn't the prettiest right now,
 
-## Modifications
+## Modifications (READ THIS)
+
+### Design is Ugly ?
 If you want to modify your card design, you can do that in `ankify.py:model_setup()`
+
+### Lengthy Runtime ?
+The first thing AnkifySong will do is download the song from the specified YouTube link, and extract the vocals. This is a time-consuming process, so if you find yourself calling main.py on the same song, head to `main.py` and modify the global variable `REDOWNLOAD_CORE`,
+changing `REDOWNLOAD_CORE = True` to `REDOWNLOAD_CORE = False` to avoid reprocessing things that will not change.
+
+On the other hand, if you are using many different songs/srt-files, keep this at `True` so that the old data is cleared when the script is called.
+
+### SRT timings are too close to the start/ends of phrases ?
+Head to `srtProcessor.py` and modify the `BUFFER` global variable, indicating the seconds (a float) to subtract from the start of each "subtitle phrase" and to add to the end of each.
+I have set it to 0.5 seconds since that's what works for me.
+
+
 
 
 
