@@ -2,6 +2,7 @@
 *.npy
 *.npz
 *.pth
+!models/baseline.pth
 *.json
 *.log
 
