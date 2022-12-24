@@ -1,5 +1,6 @@
 import ankify
 import os
+import sys
 import mp3Processor
 import srtProcessor
 
@@ -45,4 +46,9 @@ def run(link, name="Anki Deck"):
 
 
 if __name__ == '__main__':
-    run("https://www.youtube.com/watch?v=r6cIKA1SWI8", "Spinning Sky Rabbit")
+    argc = len(sys.argv)
+    if argc != 3:
+        print("Usage: python3 main.py \"<youtube-link>\" \"<deck-name>\"")
+        print("Ex: python3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
+        exit(1)
+    run(sys.argv[1], sys.argv[2])
