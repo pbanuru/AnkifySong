@@ -13,10 +13,16 @@ Additionally, it isolates the vocals on the back of each flashcard, in case you 
 
 # REQUIRES
 An srt (SubRip File Format) file, specifying the following for each flashcard:
+
+
 start time of lyric phrase --> end time of lyric phrase,
+
 foreign language lyrics,
+
 english transliteration lyrics,
+
 english translation lyrics
+
 
 Ex:
 ```
