@@ -5,7 +5,7 @@ import mp3Processor
 import srtProcessor
 
 REDOWNLOAD_CORE = False
-DEBUG = True
+DEBUG = False
 
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder
@@ -31,6 +31,7 @@ def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
     song = mp3Processor.Song(link)
 
     # Parse SRT file
+    # Buffer set to 0.5 seconds by default, can be changed
     srt_processor = srtProcessor.SrtProcessor(song, srt_path, 0.5)
     note_field_lists, audio_paths = srt_processor.processSrtFile()
 

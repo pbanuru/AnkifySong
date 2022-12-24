@@ -1,5 +1,4 @@
 import srt
-import mp3Processor
 from datetime import timedelta
 
 
@@ -15,7 +14,6 @@ class SrtProcessor:
         '''
         Takes in a subtitle and adds a buffer to the start and end times.
         '''
-
         delta = timedelta(seconds=self.BUFFER)
         suggested_start = subtitle.start - delta
         suggested_end = subtitle.end + delta
