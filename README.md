@@ -16,6 +16,7 @@ An srt (SubRip File Format) file, specifying the following for each flashcard:
 
 
 ```
+number
 start time of lyric phrase --> end time of lyric phrase,
 foreign language lyrics,
 english transliteration lyrics,
