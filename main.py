@@ -1,5 +1,6 @@
 from ankify import *
 import os
+import shutil
 from time import sleep
 import mp3Processor
 
@@ -20,6 +21,12 @@ def run():
     
     mp3Processor.download("https://www.youtube.com/watch?v=r6cIKA1SWI8")
     mp3Processor.clip_timestamp(0, 5, "mata0")
+
+    # Move vocal-remover/audio_Vocals.wav to data/audio_Vocals.wav
+    shutil.move("vocal-remover/audio_Vocals.wav", "data/audio_Vocals.wav")
+    shutil.move("vocal-remover/audio_Instruments.wav", "data/audio_Instruments.wav")
+
+    
 
     deck = gen_deck("Anki Deck")
     model = gen_model("Anki Model")
