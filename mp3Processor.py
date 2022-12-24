@@ -5,6 +5,8 @@ import moviepy.editor as mp
 import os
 import shutil
 
+AUDIO_SRC_CLIP = mp.AudioFileClip("data/core/audio.aac")
+AUDIO_VOCALS_CLIP = mp.AudioFileClip("data/core/audio_Vocals.wav")
 
 def download(url):
     """
@@ -47,16 +49,14 @@ def clip_timestamp(start, end, filename):
     Download a subclip of the audio file as an mp3, giving it the name filename.mp3
     """
     # Use main audio file
-    clip_src = mp.AudioFileClip("data/core/audio.aac")
-    clip_src = clip_src.subclip(start, end)
+    clip_src = AUDIO_SRC_CLIP.subclip(start, end)
 
     clip_src_name = f"{filename}_src.mp3"
     clip_src_path = f"data/clips/{clip_src_name}"
     clip_src.write_audiofile(clip_src_path)
 
     # Use vocals only
-    clip_vocals = mp.AudioFileClip("data/core/audio_Vocals.wav")
-    clip_vocals = clip_vocals.subclip(start, end)
+    clip_vocals = AUDIO_VOCALS_CLIP.subclip(start, end)
 
     clip_vocals_name = f"{filename}_vocals.mp3"
     clip_vocals_path = f"data/clips/{clip_vocals_name}"
@@ -64,6 +64,9 @@ def clip_timestamp(start, end, filename):
 
     return clip_src_name, clip_src_path, clip_vocals_name, clip_vocals_path
 
-
-
+def song_length():
+    """
+    Returns the length of the audio file in seconds
+    """
+    return AUDIO_SRC_CLIP.duration
     
