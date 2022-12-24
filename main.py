@@ -23,7 +23,7 @@ def clear_data():
         if file != "core" and file != "clips":
             os.remove(f"data/{file}")
 
-def run(link, name="Anki Deck"):
+def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
 
     clear_data() # Empty data folder of all files besides placeholder
     
@@ -36,7 +36,7 @@ def run(link, name="Anki Deck"):
     model = ankify.gen_model("My Model")
 
     # Parse SRT file
-    note_field_lists, audio_paths = srtProcessor.processSrtFile("./lyrics.srt")
+    note_field_lists, audio_paths = srtProcessor.processSrtFile(srt_path)
     
     # Add notes to deck
     ankify.add_notes(deck, model, note_field_lists)
@@ -47,8 +47,17 @@ def run(link, name="Anki Deck"):
 
 if __name__ == '__main__':
     argc = len(sys.argv)
-    if argc != 3:
-        print("Usage: python3 main.py \"<youtube-link>\" \"<deck-name>\"")
-        print("Ex: python3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
+    if argc not in [3, 4]:
+        print("Usage: python3 main.py \"<youtube-link>\" \"<deck-name>\" [<srt-path>]")
+        print("Using Default lyrics.srt file:\npython3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
+        print("To specify srt path:\npython3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\" .../.../mylyrics.srt")
         exit(1)
-    run(sys.argv[1], sys.argv[2])
+    
+    link = sys.argv[1]
+    name = sys.argv[2]
+
+    if argc == 3:
+        run(link, name)
+    else:
+        srt_path = sys.argv[3]
+        run(link, name, srt_path)
