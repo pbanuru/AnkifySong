@@ -1,5 +1,9 @@
 venv
-data/*
-!data/placeholder
+data/core
+data/clips
+!data/core/placeholder
+!data/clips/placeholder
+data/anki_deck.apkg
 .vscode/
+.DS_Store
 __pycache__/

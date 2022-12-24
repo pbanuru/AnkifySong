@@ -24,14 +24,15 @@ def model_setup():
     fields = [
         {'name': 'Question'},
         {'name': 'Answer'},
-        {'name': 'MyMedia'}
+        {'name': 'Source_Clip'},
+        {'name': 'Vocals_Clip'},
 
     ]
     templates = [
         {
             'name': 'Song Template', 
-            'qfmt': '{{Question}}<br>{{MyMedia}}', # qfmt is the question format
-            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}', # afmt is the answer format
+            'qfmt': '{{Question}}<br>Listen:{{Source_Clip}}', # qfmt is the question format (front side)
+            'afmt': '{{FrontSide}}<br>Isolated Vocals:{{Vocals_Clip}}<br><hr id="answer">{{Answer}}', # afmt is the answer format
         },
     ]
     return fields, templates
