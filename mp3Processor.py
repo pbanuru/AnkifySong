@@ -1,5 +1,3 @@
-# This module will download a specified file from a specified URL using pytube
-
 import pytube
 import moviepy.editor as mp
 import os

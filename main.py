@@ -1,13 +1,9 @@
 import ankify
-import genanki
 import os
-import subprocess
-import shutil
-from time import sleep
 import mp3Processor
 import srtProcessor
 
-REDOWNLOAD_CORE = False
+REDOWNLOAD_CORE = True
 
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder

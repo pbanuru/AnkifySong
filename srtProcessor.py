@@ -1,6 +1,7 @@
 import srt
 import mp3Processor
 from datetime import timedelta
+
 # Seconds before to subtract from start time and seconds after to add to end time of subtitle
 BUFFER = 0.5
 

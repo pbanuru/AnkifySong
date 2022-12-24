@@ -1,8 +1,6 @@
 import genanki
 import random
 
-
-
 def rand_id():
     '''
     Note from https://github.com/kerrickstaley/genanki:
