@@ -1,4 +1,4 @@
-venv
+.venv
 data/core/*
 data/clips/*
 !data/core/.placeholder
