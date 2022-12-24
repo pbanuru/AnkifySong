@@ -3,9 +3,7 @@ Are you trying to learn language through song?
 Classic Flashcards have no audio in them, just words; and what's the most recognizable thing about lyrics?
 It's the way they sound, the words are accomplices.
 
-(This might explain why I like listening to BTS's songs, despite not knowing the meanings/messages of 70% of them.)
-
-![image](https://user-images.githubusercontent.com/55062649/209430434-c07adade-b99c-4abf-ba7c-2859b5334107.png)
+<img src="https://user-images.githubusercontent.com/55062649/209430434-c07adade-b99c-4abf-ba7c-2859b5334107.png" width="10%">
 Anki flashcards can contain anything a website can; that includes audio.
 We can use these to contain our sound, but the process of manually creating specialized Anki Decks is quite lengthy.
 
@@ -59,6 +57,7 @@ We also need to install PyTorch (used for vocal isolation)
 Additionally, install the requirements from [vocal-remover](https://github.com/tsurumeso/vocal-remover/blob/develop/README.md)
 
 Please take a look at this repo if you need to understand how to modify the vocal isolation. Ex. change from gpu to cpu ML, etc.
+Otherwise, as far as vocal-remover requirements are concerned, install them like this:
 ```
 $ cd vocal-remover/
 $ pip install -r requirements.txt
