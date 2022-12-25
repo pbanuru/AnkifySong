@@ -20,6 +20,7 @@ start time of lyric phrase --> end time of lyric phrase,
 foreign language lyrics,
 english transliteration lyrics,
 english translation lyrics
+[optional annotation, see `lyrics_annotated.srt`]
 ```
 
 
@@ -70,6 +71,9 @@ Using Default lyrics.srt file:
 `$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
 To specify srt path:
 `$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
+
+Ex.
+`python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" lyrics_annotated.srt`
 
 If you dont specify the srt path, AnkifySong will use the lyrics.srt file in the source directory. By default, it contains the srt file to the song "回る空うさぎ" (Spinning Sky Rabbit).
 

@@ -23,6 +23,7 @@ def model_setup():
         {'name': 'Foreign Lyrics'},
         {'name': 'Transliterated Lyrics'},
         {'name': 'English Lyrics'},
+        {'name': 'Annotation'},
         {'name': 'Source_Clip'},
         {'name': 'Vocals_Clip'},
 
@@ -35,7 +36,8 @@ def model_setup():
                 '{{FrontSide}}<br>\
                 Isolated Vocals:{{Vocals_Clip}}<br>\
                 {{Transliterated Lyrics}}<br>\
-                <hr id="answer">{{English Lyrics}}', 
+                <hr id="answer">{{English Lyrics}}<br>\
+                    {{Annotation}}', 
         },
     ]
     return fields, templates

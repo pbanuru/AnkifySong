@@ -58,6 +58,8 @@ class SrtProcessor:
                 foreign = content[0]
                 transliteration = content[1]
                 english = content[2]
+                annotation = "\n".join(content[3:]) if len(content) > 3 else ""
+
                 filename = f"{transliteration.split()[0]}{i}"
 
                 # Add buffer to start and end times
@@ -67,7 +69,7 @@ class SrtProcessor:
                 clip_src_name, clip_src_path, clip_vocals_name, clip_vocals_path = self.song.clip_timestamp(subtitle.start.seconds, subtitle.end.seconds, filename)
                 
                 # Add the fields of the current note
-                fields = [foreign, transliteration, english, f"[sound:{clip_src_name}]", f"[sound:{clip_vocals_name}]"]
+                fields = [foreign, transliteration, english, annotation, f"[sound:{clip_src_name}]", f"[sound:{clip_vocals_name}]"]
                 note_field_lists.append(fields)
 
                 # Add to the list of audio paths
