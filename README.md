@@ -100,8 +100,8 @@ changing `REDOWNLOAD_CORE = True` to `REDOWNLOAD_CORE = False` to avoid reproces
 On the other hand, if you are using many different songs/srt-files, keep this at `True` so that the old data is cleared when the script is called.
 
 ### SRT timings are too close to the start/ends of phrases ?
-<img width="116" alt="image" src="https://user-images.githubusercontent.com/55062649/209430370-4ad9e710-8cff-4867-8cde-bf8782af8e06.png">
-Head to `srtProcessor.py` and modify the `BUFFER` global variable, indicating the seconds (a float) to subtract from the start of each "subtitle phrase" and to add to the end of each.
+<img width="555" alt="image" src="https://user-images.githubusercontent.com/55062649/209452349-ce4f5dab-5dd8-4744-b715-834626761d67.png">
+Head to `main.py:run()` and modify the `buffer` argument in the srtProcessor Object initialization, indicating the seconds (a float) to subtract from the start of each "subtitle phrase" and to add to the end of each.
 I have set it to 0.5 seconds since that's what works for me.
 
 ## Suggestions on getting SRT file
