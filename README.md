@@ -80,6 +80,7 @@ When all is finished, load `data/anki_deck.apkg` into Anki, and you have your de
 
 Card Front:
 <img width="359" alt="image" src="https://user-images.githubusercontent.com/55062649/209429700-a85522e6-cfc4-4a08-804d-3739071e1cd9.png">
+
 Card Back:
 <img width="411" alt="image" src="https://user-images.githubusercontent.com/55062649/209429767-b68639e6-3897-407e-bcce-9ea6830566c6.png">
 
