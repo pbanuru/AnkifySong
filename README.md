@@ -120,4 +120,5 @@ For Japanese, there are tools like http://www.romajidesu.com/translator/, or you
 ## Learning Tips
 Add notes to your cards, see `lyrics_annotated.srt` in comparison to `lyrics.srt`.
 This can provide more information as to meaning, and can decrease the need to back and forth translate things.
-I find ChatGPT to be an awesome tool to write lyric phrase explanations. That's what I used for `lyrics_annotated.srt`. I await the near future, when ChatGPT has an code-based API, so that things like my annotation gathering could be done programatically. AI is truly exciting.
+I find ChatGPT to be an awesome tool to write lyric phrase explanations. That's what I used for `lyrics_annotated.srt`. 
+The GPT Api can also be used to programmatically write explanations! I haven't added this feature yet. If you want to, please make a PR!
