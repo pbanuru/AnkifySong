@@ -1,7 +1,7 @@
 appdirs==1.4.4
 audioread==3.0.0
 cached-property==1.5.2
-certifi==2022.12.7
+certifi==2023.7.22
 cffi==1.15.1
 charset-normalizer==2.1.1
 chevron==0.14.0
