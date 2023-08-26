@@ -65,14 +65,14 @@ $ pip install -r requirements.txt
 ```
 
 ## Run it!
-Usage: `python3 main.py "<youtube-link>" "<deck-name>" [<srt-path>]`
+Usage: `python main.py "<youtube-link>" "<deck-name>" [<srt-path>]`
 
 Using Default lyrics.srt file:
-`$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
+`$ python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
 To specify srt path:
-`$ python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
+`$ python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
 Ex. Feel free to try this out, lyrics_annotated.srt is provided.
-`python3 main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" lyrics_annotated.srt`
+`python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" lyrics_annotated.srt`
 
 If you dont specify the srt path, AnkifySong will use the lyrics.srt file in the source directory. By default, it contains the srt file to the song "回る空うさぎ" (Spinning Sky Rabbit).
 

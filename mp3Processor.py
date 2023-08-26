@@ -45,8 +45,8 @@ class Song:
             
         # Call vocal remover 
         print("Extracting Pure Vocals...")
-        os.system("cd vocal-remover && python3 inference.py --input ../data/core/audio.aac --gpu 0")
-        # subprocess.run(["cd", "vocal-remover", "&&", "python3", "inference.py", "--input", "../data/core/audio.aac", "--gpu", "0"])
+        os.system("cd vocal-remover && python inference.py --input ../data/core/audio.aac --gpu 0")
+        # subprocess.run(["cd", "vocal-remover", "&&", "python", "inference.py", "--input", "../data/core/audio.aac", "--gpu", "0"])
         
         # Move vocal-remover/audio_Vocals.wav to data/audio_Vocals.wav
         shutil.move("vocal-remover/audio_Vocals.wav", "data/core/audio_Vocals.wav")

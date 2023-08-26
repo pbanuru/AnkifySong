@@ -53,9 +53,9 @@ if __name__ == '__main__':
     argc = len(sys.argv)
 
     if argc not in [3, 4]:
-        print("Usage: python3 main.py \"<youtube-link>\" \"<deck-name>\" [<srt-path>]")
-        print("Using Default lyrics.srt file:\npython3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
-        print("To specify srt path:\npython3 main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\" .../.../mylyrics.srt")
+        print("Usage: python main.py \"<youtube-link>\" \"<deck-name>\" [<srt-path>]")
+        print("Using Default lyrics.srt file:\npython main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
+        print("To specify srt path:\npython main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\" .../.../mylyrics.srt")
         exit(1)
     
     link = sys.argv[1]
