@@ -1,6 +1,12 @@
 import tkinter as tk
 from tkinter import filedialog
 from main import run
+import sys
+python_path = sys.executable
+
+import os
+if not os.path.exists(python_path):
+    raise FileNotFoundError(f"Python executable not found at {python_path}")
 
 class AnkifySongGUI(tk.Tk):
     def __init__(self):
