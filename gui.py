@@ -1,12 +1,15 @@
 import tkinter as tk
 from tkinter import filedialog
 from main import run
+import subprocess
+
 import sys
 python_path = sys.executable
 
 import os
 if not os.path.exists(python_path):
     raise FileNotFoundError(f"Python executable not found at {python_path}")
+
 
 class AnkifySongGUI(tk.Tk):
     def __init__(self):
@@ -63,8 +66,18 @@ class AnkifySongGUI(tk.Tk):
         
         # Start Button
         self.start_button = tk.Button(self, text="Start", command=self.start_process)
+        self.start_button.grid(row=4, column=1, padx=10, pady=10)
+        
+        # Output Box
+        self.output_label = tk.Label(self, text="Output:")
+        self.output_label.grid(row=5, column=0, padx=10, pady=10, sticky=tk.W)
+
+        self.output_box = scrolledtext.ScrolledText(self, width=50, height=10)  # Text widget with a scrollbar
+        self.output_box.grid(row=5, column=1, padx=10, pady=10, columnspan=2)
+        
         # Autosize the window to fit content
         self.autosize_window()
+
     def autosize_window(self):
         self.update_idletasks()
         width = self.winfo_width()
@@ -88,6 +101,20 @@ class AnkifySongGUI(tk.Tk):
         srt_path = self.srt_entry.get()
         output_path = self.output_entry.get() 
 
+
+        # Construct the command
+        cmd = [python_path, "main.py", link, name]
+
+        # Add optional arguments if they are provided
+        if srt_path:
+            cmd.extend(["-s", srt_path])
+        if output_path:
+            cmd.extend(["-o", output_path])
+
+        print("Executing command:", ' '.join(cmd))
+        
+        # Start the subprocess
+        process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 if __name__ == "__main__":
     app = AnkifySongGUI()
     app.mainloop()
