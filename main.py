@@ -25,7 +25,7 @@ def clear_data():
         if file != "core" and file != "clips":
             os.remove(f"data/{file}")
 
-def run(link, name, srt_path, output_path):
+def run(link, name, srt_path="./lyrics.srt", output_path="data/anki_deck.apkg"):
 
     clear_data() # Empty data folder of all files besides placeholder
     
