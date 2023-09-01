@@ -3,6 +3,7 @@ import os
 import sys
 import mp3Processor
 import srtProcessor
+import argparse
 
 REDOWNLOAD_CORE = False
 DEBUG = False
@@ -24,7 +25,7 @@ def clear_data():
         if file != "core" and file != "clips":
             os.remove(f"data/{file}")
 
-def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
+def run(link, name, srt_path="./lyrics.srt", output_path="data/anki_deck.apkg"):
 
     clear_data() # Empty data folder of all files besides placeholder
     
@@ -42,27 +43,33 @@ def run(link, name="Anki Deck", srt_path="./lyrics.srt"):
     ankify.add_notes(deck, model, note_field_lists)
 
     # Generate package
-    ankify.gen_package(deck, audio_paths)
-
+    ankify.gen_package(deck, audio_paths, output_path)
 
 if __name__ == '__main__':
     if DEBUG:
         run("https://www.youtube.com/watch?v=r6cIKA1SWI8", "Spinning Sky Rabbit")
         exit(0)
 
-    argc = len(sys.argv)
-
-    if argc not in [3, 4]:
-        print("Usage: python main.py \"<youtube-link>\" \"<deck-name>\" [<srt-path>]")
-        print("Using Default lyrics.srt file:\npython main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\"")
-        print("To specify srt path:\npython main.py \"https://www.youtube.com/watch?v=r6cIKA1SWI8\" \"Spinning Sky Rabbit\" .../.../mylyrics.srt")
-        exit(1)
+    parser = argparse.ArgumentParser(
+        description="Generate Anki flashcards from songs.",
+        epilog="""Examples:
+        Using Default lyrics.srt file:
+        python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"
+        
+        To specify srt path:
+        python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" -s .../.../mylyrics.srt""",
+        formatter_class=argparse.RawDescriptionHelpFormatter  # This ensures that the epilog is formatted as provided
+    )
     
-    link = sys.argv[1]
-    name = sys.argv[2]
+    # Required arguments
+    parser.add_argument("youtube_link", help="YouTube link of the song.")
+    parser.add_argument("deck_name", help="Name of the Anki deck.")
+    
+    # Optional arguments
+    parser.add_argument("-s", "--srt_path", default="./lyrics.srt", help="Path to the SRT file. Default is ./lyrics.srt.")
+    parser.add_argument("-o", "--output_path", default="data/anki_deck.apkg", help="Path to save the generated Anki deck. Default is data/anki_deck.apkg.")
+    
+    args = parser.parse_args()
 
-    if argc == 3:
-        run(link, name)
-    else:
-        srt_path = sys.argv[3]
-        run(link, name, srt_path)
+    run(args.youtube_link, args.deck_name, args.srt_path, args.output_path)
+
