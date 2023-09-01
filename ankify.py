@@ -54,9 +54,9 @@ def gen_deck(title):
     deck_id = rand_id() 
     return genanki.Deck(deck_id, title)
 
-def gen_package(deck, audio_paths):
+def gen_package(deck, audio_paths, output_path):
     package = genanki.Package(deck, audio_paths)
-    package.write_to_file("data/anki_deck.apkg")
+    package.write_to_file(output_path)
 
 def add_notes(deck, model, fields_list):
     '''
