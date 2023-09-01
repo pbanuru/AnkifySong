@@ -14,7 +14,6 @@ class AnkifySongGUI(tk.Tk):
 
         # Window title and size
         self.title("AnkifySong - Turn Songs into Anki Flashcards")
-        self.geometry("500x200")
 
         # YouTube Link Field
         self.youtube_label = tk.Label(self, text="YouTube Link:")
@@ -22,6 +21,9 @@ class AnkifySongGUI(tk.Tk):
 
         self.youtube_entry = tk.Entry(self, width=40)
         self.youtube_entry.grid(row=0, column=1, padx=10, pady=10)
+        
+        default_youtube_link = "https://www.youtube.com/watch?v=r6cIKA1SWI8"
+        self.youtube_entry.insert(0, default_youtube_link)
 
         # Deck Name Field
         self.deck_label = tk.Label(self, text="Deck Name:")
@@ -29,6 +31,9 @@ class AnkifySongGUI(tk.Tk):
 
         self.deck_entry = tk.Entry(self, width=40)
         self.deck_entry.grid(row=1, column=1, padx=10, pady=10)
+        
+        default_deck_name = "Spinning Sky Rabbit"
+        self.deck_entry.insert(0, default_deck_name)
 
         # SRT File Field
         self.srt_label = tk.Label(self, text="SRT File:")
@@ -36,13 +41,35 @@ class AnkifySongGUI(tk.Tk):
 
         self.srt_entry = tk.Entry(self, width=30)
         self.srt_entry.grid(row=2, column=1, padx=10, pady=10, sticky=tk.W)
+        
+        default_srt_path = r".\lyrics.srt"
+        self.srt_entry.insert(0, default_srt_path)
 
         self.browse_button = tk.Button(self, text="Browse", command=self.browse_srt)
         self.browse_button.grid(row=2, column=2, padx=10, pady=10)
         
+        # Output Path Field
+        self.output_label = tk.Label(self, text="Output Path:")
+        self.output_label.grid(row=3, column=0, padx=10, pady=10, sticky=tk.W)
+
+        self.output_entry = tk.Entry(self, width=30)
+        self.output_entry.grid(row=3, column=1, padx=10, pady=10, sticky=tk.W)
+        
+        default_output_path = r".\anki_deck.apkg"
+        self.output_entry.insert(0, default_output_path)
+
+        self.output_browse_button = tk.Button(self, text="Browse", command=self.browse_output)
+        self.output_browse_button.grid(row=3, column=2, padx=10, pady=10)
+        
         # Start Button
         self.start_button = tk.Button(self, text="Start", command=self.start_process)
-        self.start_button.grid(row=3, column=1, padx=10, pady=10)
+        # Autosize the window to fit content
+        self.autosize_window()
+    def autosize_window(self):
+        self.update_idletasks()
+        width = self.winfo_width()
+        height = self.winfo_height()
+        self.geometry(f"{width}x{height}")
 
     def browse_srt(self):
         srt_path = filedialog.askopenfilename(filetypes=[("SRT files", "*.srt")])
