@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import filedialog
 from main import run
 import subprocess
+from tkinter import messagebox
+from tkinter import scrolledtext
 
 import sys
 python_path = sys.executable
@@ -115,6 +117,25 @@ class AnkifySongGUI(tk.Tk):
         
         # Start the subprocess
         process = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+
+        # Get the output
+        stdout, stderr = process.communicate()
+
+        # Update the output box
+        self.update_output_box(stdout)
+        if process.returncode != 0:
+            self.update_output_box(stderr)
+            messagebox.showerror("Error", "An error occurred. Check the output box for details.")
+        else:
+            messagebox.showinfo("Success", "Anki deck created successfully!")
+    def update_output_box(self, text):
+        self.output_box.config(state=tk.NORMAL)  # Make it editable
+        self.output_box.insert(tk.END, text)
+        self.output_box.see(tk.END)  # Scroll to the end
+        self.output_box.config(state=tk.DISABLED)  # Set back to read-only
+        self.update_idletasks()  # Update the GUI
+
+
 if __name__ == "__main__":
     app = AnkifySongGUI()
     app.mainloop()
