@@ -76,11 +76,17 @@ class AnkifySongGUI(tk.Tk):
         self.srt_entry.delete(0, tk.END)
         self.srt_entry.insert(0, srt_path)
         
+    def browse_output(self):
+        output_path = filedialog.asksaveasfilename(defaultextension=".apkg", filetypes=[("Anki Package", "*.apkg")])
+        self.output_entry.delete(0, tk.END)
+        self.output_entry.insert(0, output_path)
+        
     def start_process(self):
+        
         link = self.youtube_entry.get()
         name = self.deck_entry.get()
         srt_path = self.srt_entry.get()
-        run(link, name, srt_path)
+        output_path = self.output_entry.get() 
 
 if __name__ == "__main__":
     app = AnkifySongGUI()
