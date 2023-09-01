@@ -26,7 +26,7 @@ proglog==0.1.10
 pycparser==2.21
 pytube==15.0.0
 PyYAML==6.0
-requests==2.28.1
+requests==2.31.0
 resampy==0.4.2
 scikit-learn==1.2.0
 scipy==1.9.3
