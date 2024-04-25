@@ -17,9 +17,9 @@ class TestClearData(unittest.TestCase):
         main.clear_data()
 
         # Check if the correct files are attempted to be removed
-        mock_remove.assert_any_call('data/core/file1.mp3')
-        mock_remove.assert_any_call('data/clips/clip1.mp3')
-        mock_remove.assert_any_call('data/anki_deck.apkg')
+        mock_remove.assert_any_call('ankifysong/data/core/file1.mp3')
+        mock_remove.assert_any_call('ankifysong/data/clips/clip1.mp3')
+        mock_remove.assert_any_call('ankifysong/data/anki_deck.apkg')
         self.assertEqual(mock_remove.call_count, 3)
 
 @patch('ankifysong.main.ankify')
