@@ -1,8 +1,8 @@
-import ankify
+from . import ankify
+from . import mp3Processor
+from . import srtProcessor
 import os
 import sys
-import mp3Processor
-import srtProcessor
 import argparse
 
 REDOWNLOAD_CORE = False
