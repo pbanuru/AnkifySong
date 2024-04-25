@@ -7,12 +7,12 @@ import sys
 
 class TestAnkifySongGUI(unittest.TestCase):
     def setUp(self):
-        """Create an instance of the GUI before each test."""
+        """Create an instance of the GUI before each test and set the Python executable path."""
         self.app = AnkifySongGUI()
         self.app.python_path = sys.executable
 
     def test_default_values_inserted(self):
-        """Test if default values are correctly inserted into Entry widgets."""
+        """Ensure default values are pre-filled in the GUI's Entry widgets."""
         self.assertEqual(self.app.youtube_entry.get(), "https://www.youtube.com/watch?v=r6cIKA1SWI8")
         self.assertEqual(self.app.deck_entry.get(), "Spinning Sky Rabbit")
         self.assertEqual(self.app.srt_entry.get(), r".\lyrics.srt")
@@ -20,14 +20,14 @@ class TestAnkifySongGUI(unittest.TestCase):
 
     @patch('tkinter.filedialog.askopenfilename')
     def test_browse_srt(self, mock_askopenfilename):
-        """Test the browse_srt method."""
+        """Simulate browsing for an SRT file and check if the path is set correctly in the GUI."""
         mock_askopenfilename.return_value = 'path/to/file.srt'
         self.app.browse_srt()
         self.assertEqual(self.app.srt_entry.get(), 'path/to/file.srt')
 
     @patch('tkinter.filedialog.asksaveasfilename')
     def test_browse_output(self, mock_asksaveasfilename):
-        """Test the browse_output method."""
+        """Simulate browsing for an output file and verify the path is set correctly in the GUI."""
         mock_asksaveasfilename.return_value = 'path/to/output.apkg'
         self.app.browse_output()
         self.assertEqual(self.app.output_entry.get(), 'path/to/output.apkg')
@@ -35,7 +35,7 @@ class TestAnkifySongGUI(unittest.TestCase):
     @patch('subprocess.Popen')
     @patch('tkinter.messagebox.showinfo')  # Patch the showinfo method
     def test_start_process(self, mock_showinfo, mock_popen):
-        """Test the start_process method."""
+        """Test the start_process method by simulating the subprocess and checking GUI updates."""
         process_mock = MagicMock()
         attrs = {'communicate.return_value': ('output', 'error'), 'returncode': 0}
         process_mock.configure_mock(**attrs)
@@ -51,7 +51,7 @@ class TestAnkifySongGUI(unittest.TestCase):
         mock_showinfo.assert_called_once()  # Ensure that showinfo was called
 
     def tearDown(self):
-        """Destroy the GUI instance after each test."""
+        """Clean up by destroying the GUI instance after each test."""
         self.app.destroy()
 
 if __name__ == '__main__':
