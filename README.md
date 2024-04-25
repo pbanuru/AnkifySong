@@ -10,7 +10,7 @@ We can use these to contain our sound, but the process of manually creating spec
 AnkifySong automatically creates subclips of the full song to put on each flashcard, each subclip showcasing the audio of that flashcard's phrase.
 Additionally, it isolates the vocals on the back of each flashcard, in case you want to hone in on the pronounciation, without the background noise.
 
-# REQUIRES
+## REQUIRES
 An srt (SubRip File Format) file, specifying the following for each flashcard:
 
 
