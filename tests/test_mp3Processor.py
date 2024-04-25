@@ -6,13 +6,13 @@ class TestSong(unittest.TestCase):
     @patch('ankifysong.mp3Processor.os.path.exists')
     @patch('ankifysong.mp3Processor.pytube.YouTube')
     def test_download(self, mock_youtube, mock_exists):
-        # Test when file already exists
+        # Check that YouTube download is skipped if the file already exists.
         mock_exists.return_value = True
         song = Song("dummy_url")
         song.download()
         mock_youtube.assert_not_called()
 
-        # Test downloading new file
+        # Ensure YouTube's download method is called when the file does not exist.
         mock_exists.return_value = False
         song.download()
         mock_youtube.assert_called_once_with("dummy_url")
@@ -21,13 +21,13 @@ class TestSong(unittest.TestCase):
     @patch('ankifysong.mp3Processor.shutil.move')
     @patch('ankifysong.mp3Processor.os.system')
     def test_isolate_vocals(self, mock_system, mock_move, mock_exists):
-        # Test when vocals are already extracted
+        # Verify no action is taken if the vocals have already been isolated.
         mock_exists.return_value = True
         song = Song("dummy_url")
         song.isolate_vocals()
         mock_system.assert_not_called()
 
-        # Test extracting vocals
+        # Check that the system command for isolating vocals is executed when they are not already isolated.
         mock_exists.return_value = False
         song.isolate_vocals()
         mock_system.assert_called_once()
@@ -42,7 +42,7 @@ class TestSong(unittest.TestCase):
         song = Song("dummy_url")
         song.clip_timestamp(0, 10, "test_clip")
 
-        # Check if subclips are created and files are written
+        # Test clipping a segment of the song and writing it to a file, ensuring the write operation is called twice.
         self.assertEqual(mock_clip.write_audiofile.call_count, 2)
 
     @patch('ankifysong.mp3Processor.mp.AudioFileClip')
@@ -54,6 +54,7 @@ class TestSong(unittest.TestCase):
         song = Song("dummy_url")
         length = song.song_length()
 
+        # Verify that the song length is correctly retrieved from the audio clip.
         self.assertEqual(length, 120)
 
 if __name__ == '__main__':
