@@ -49,6 +49,7 @@ Download the repository.
 Download the dependencies.
 This project uses the following external libraries: genanki, pytube, moviepy, srt.
 ```
+$ cd ankifysong/
 $ pip install -r requirements.txt
 ```
 
@@ -60,23 +61,23 @@ Additionally, install the requirements from [vocal-remover](https://github.com/t
 Please take a look at this repo if you need to understand how to modify the vocal isolation. Ex. change from gpu to cpu ML, etc.
 Otherwise, as far as vocal-remover requirements are concerned, install them like this:
 ```
-$ cd vocal-remover/
+$ cd ankifysong/vocal-remover/
 $ pip install -r requirements.txt
 ```
 
 ## Run it!
-Usage: `python main.py "<youtube-link>" "<deck-name>" [<srt-path>]`
+Usage: `python ankifysong/main.py "<youtube-link>" "<deck-name>" [<srt-path>]`
 
 Using Default lyrics.srt file:
-`$ python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
+`$ python ankifysong/main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit"`
 To specify srt path:
-`$ python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
+`$ python ankifysong/main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" .../.../mylyrics.srt`
 Ex. Feel free to try this out, lyrics_annotated.srt is provided.
-`python main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" lyrics_annotated.srt`
+`python ankifysong/main.py "https://www.youtube.com/watch?v=r6cIKA1SWI8" "Spinning Sky Rabbit" lyrics_annotated.srt`
 
-If you dont specify the srt path, AnkifySong will use the lyrics.srt file in the source directory. By default, it contains the srt file to the song "回る空うさぎ" (Spinning Sky Rabbit).
+If you dont specify the srt path, AnkifySong will use the lyrics.srt file in the ankifysong directory. By default, it contains the srt file to the song "回る空うさぎ" (Spinning Sky Rabbit).
 
-When all is finished, load `data/anki_deck.apkg` into Anki, and you have your deck!
+When all is finished, load `ankifysong/data/anki_deck.apkg` into Anki, and you have your deck!
 
 Card Front:
 <img width="359" alt="image" src="https://user-images.githubusercontent.com/55062649/209429700-a85522e6-cfc4-4a08-804d-3739071e1cd9.png">
@@ -89,12 +90,12 @@ The design isn't the prettiest right now,
 ## Modifications (READ THIS)
 
 ### Design is Ugly ?
-If you want to modify your card design, you can do that in `ankify.py:model_setup()`
+If you want to modify your card design, you can do that in `ankifysong/ankify.py:model_setup()`
 <img width="786" alt="image" src="https://user-images.githubusercontent.com/55062649/209430407-9b676d37-4824-43f1-99f3-e6e111dca941.png">
 
 ### Lengthy Runtime ?
 <img width="215" alt="image" src="https://user-images.githubusercontent.com/55062649/209430385-a29b2804-3c3b-4fa6-8c50-c64e5cd3046d.png">
-The first thing AnkifySong will do is download the song from the specified YouTube link, and extract the vocals. This is a time-consuming process, so if you find yourself calling main.py on the same song, head to `main.py` and modify the global variable `REDOWNLOAD_CORE`,
+The first thing AnkifySong will do is download the song from the specified YouTube link, and extract the vocals. This is a time-consuming process, so if you find yourself calling main.py on the same song, head to `ankifysong/main.py` and modify the global variable `REDOWNLOAD_CORE`,
 changing `REDOWNLOAD_CORE = True` to `REDOWNLOAD_CORE = False` to avoid reprocessing things that will not change.
 
 On the other hand, if you are using many different songs/srt-files, keep this at `True` so that the old data is cleared when the script is called.
@@ -118,7 +119,7 @@ For Japanese, there are tools like http://www.romajidesu.com/translator/, or you
 [Kapwing Online Tool](https://www.kapwing.com/studio/editor) seems like a good tool for creating SRTs from scratch.
 
 ## Learning Tips
-Add notes to your cards, see `lyrics_annotated.srt` in comparison to `lyrics.srt`.
+Add notes to your cards, see `ankifysong/lyrics_annotated.srt` in comparison to `ankifysong/lyrics.srt`.
 This can provide more information as to meaning, and can decrease the need to back and forth translate things.
-I find ChatGPT to be an awesome tool to write lyric phrase explanations. That's what I used for `lyrics_annotated.srt`. 
+I find ChatGPT to be an awesome tool to write lyric phrase explanations. That's what I used for `ankifysong/lyrics_annotated.srt`. 
 The GPT Api can also be used to programmatically write explanations! I haven't added this feature yet. If you want to, please make a PR!
