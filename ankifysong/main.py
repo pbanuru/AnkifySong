@@ -6,7 +6,7 @@ import srtProcessor
 import argparse
 
 REDOWNLOAD_CORE = False
-DEBUG = True
+DEBUG = False
 
 def clear_data():
     # Delete Core Data if REDOWNLOAD_CORE is True except for placeholder
