@@ -26,7 +26,7 @@ def clear_data():
             os.remove(f"ankifysong/data/{file}")
 
 def run(link, name, srt_path="ankifysong/lyrics.srt", output_path="ankifysong/data/anki_deck.apkg"):
-
+    print("Running...")
     clear_data() # Empty data folder of all files besides placeholder
     
     song = mp3Processor.Song(link)
@@ -44,6 +44,7 @@ def run(link, name, srt_path="ankifysong/lyrics.srt", output_path="ankifysong/da
 
     # Generate package
     ankify.gen_package(deck, audio_paths, output_path)
+    print(f"Finished. Output saved to {output_path}")
 
 if __name__ == '__main__':
     if DEBUG:
