@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import filedialog
-from main import run
+from ankifysong.main import run
 import subprocess
 from tkinter import messagebox
 from tkinter import scrolledtext
